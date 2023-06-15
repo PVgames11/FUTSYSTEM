@@ -1,0 +1,196 @@
+Alunos: Paulo Vitor Silva Quintanilha Matrícula: 202202780952
+
+
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class FUTSYSTEM {
+    public static void main(String[] args) throws SQLException {
+        /*String SQLcriarTabela = "CREATE TABLE jogador (" +
+                "nome VARCHAR(100) PRIMARY KEY, " +
+                "idade VARCHAR(10), " +
+                "time VARCHAR(50), " +
+                "país VARCHAR(30), " +
+                "valor DECIMAL(12,2)" +
+                ")";*/
+
+       /* String SQLInserirJogador = "INSERT INTO jogador (nome, idade, time, país, valor) VALUES " +
+                "('Neymar Junior', '31','PSG','Brasil', 70000000.00), " +
+                "('Khvicha Kvaratskhelia', '22', 'NAPOLI','Geórgia', 85000000.00), " +
+                "('Lionel Messi', '35', 'INTER MIAMI','Argentina', 45000000.00), " +
+                "('Vinicius Junior', '22', 'REAL MADRID','Brasil', 15000000.00), " +
+                "('Cristiano Ronaldo', '38', 'AL - NASSR','Portugual', 15000000.00), " +
+                "('Yuri Alberto', '22', 'CORINTHIANS','Brasil', 18000000.00), " +
+                "('Endrick', '16', 'PALMEIRAS','Brasil', 20000000.00), " + 
+                "('Rodrygo', '22', 'REAL MADRID','Brasil', 100000000.00), " + 
+                "('Mbappe', '24', 'PSG','França', 180000000.00), " + 
+                "('Haaland', '22', 'MANCHESTER CITY','Noruega', 170000000.00), " + 
+                "('Kevin De Bruyne', '31', 'MANCHESTER CITY','Bélgica', 80000000.00), " + 
+                "('Ribamar', '26', 'PONTE PETRA','Brasil', 400000.00), " +
+                "('Andrey Santos', '19', 'VASCO','Brasil', 15000000.00), " +
+                "('De Arrascaeta', '29', 'FLAMENGO','Uruguai', 19000000.00), " +
+                "('Gabriel Barbosa', '26', 'FLAMENGO','Brasil', 21000000.00), " +
+                "('Luis Súarez', '36', 'GRÊMIO','Uruguai', 4000000.00), " +
+                "('Karim Benzema', '35', 'AL - ITTIHAD','França', 25000000.00), " +
+                "('DUDU', '31', 'PALMEIRAS','Brasil', 11000000.00), " +
+                "('Rony', '28', 'PALMEIRAS','Brasil', 13000000.00), " +
+                "('Pedro', '25', 'FLAMENGO','Brasil', 22000000.00), " +
+                "('Pedri', '20', 'BARCELONA','Espanha', 100000000.00), " +
+                "('Gavi', '18', 'BARCELONA','Espanha', 90000000.00), " +
+                "('Robert Lewandowski', '34', 'BARCELONA','Polônia', 30000000.00), " +
+                "('Thiago Silva', '38', 'CHELSEA','Brasil', 2500000.00), " +
+                "('Casemiro', '31', 'MANCHESTER UNITED','Brasil', 50000000.00), " +
+                "('Antony', '23', 'MANCHESTER UNITED','Brasil', 70000000.00), " +
+                "('Rashford', '25', 'MANCHESTER UNITED','Inglaterra', 80000000.00), " +
+                "('Grealish', '27', 'MANCHESTER CITY','Inglaterra', 70000000.00), " +
+                "('Bruno Guimarães', '25', 'NEWCASTLE UNITED','Brasil', 60000000.00), " +
+                "('Joelinton', '26', 'NEWCASTLE UNITED','Brasil', 38000000.00), " +
+                "('Mohamed Salah', '31', 'LIVERPOOL','Egito', 70000000.00), " +
+                "('Alisson', '31', 'LIVERPOOL','Brasil', 45000000.00), " +
+                "('Van Dijk', '31', 'LIVERPOOL','Holanda', 45000000.00), " +
+                "('Alexander Arnold', '24', 'LIVERPOOL','Inglaterra', 65000000.00), " +
+                "('Robertson', '29', 'LIVERPOOL','Escócia', 48000000.00), " +
+                "('Fabinho', '29', 'LIVERPOOL','Brasil', 45000000.00), " +
+                "('Son', '30', 'TOTTENHAM','Coreia do Sul', 60000000.00), " +
+                "('Harry Kane', '29', 'TOTTENHAM','Inglaterra', 90000000.00), " +
+                "('Richarlison', '26', 'TOTTENHAM','Brasil', 55000000.00), " +
+                "('Gabriel Martinelli', '21', 'ARSENAL','Brasil', 70000000.00), " +
+                "('Odegaard', '24', 'ARSENAL','Noruega', 80000000.00), " +
+                "('Bukayo Saka', '21', 'ARSENAL','Inglaterra', 100000000.00), " +
+                "('Vitor Roque', '18', 'ATHLETICO PARANAENSE','Brasil', 18000000.00), " +
+                "('Lucas Perri', '25', 'BOTAFOGO','Brasil', 2000000.00), " +
+                "('Adryelson', '25', 'BOTAFOGO','Brasil', 3000000.00), " +
+                "('Marçal', '34', 'BOTAFOGO','Brasil', 1200000.00), " +
+                "('Luis Henrique', '21', 'BOTAFOGO','Brasil', 6000000.00), " +
+                "('Matheus Nascimento', '19', 'BOTAFOGO','Brasil', 7000000.00), " +
+                "('Tiquinho Soares', '32', 'BOTAFOGO','Brasil', 4000000.00), " +
+                "('Victor Sá', '29', 'BOTAFOGO','Brasil', 2000000.00), " +
+                "('Jude Bellingham', '19', 'REAL MADRID','Inglaterra', 120000000.00), " +
+                "('Luan', '30', 'CORINTHIANS','Brasil', 900000.00), " +
+                "('Roger Guedes', '26', 'CORINTHIANS','Brasil', 8500000.00)";*/
+                
+                
+                //String SQLatualizarDados = "UPDATE jogador SET valor = 1100000.00 WHERE nome = 'Bukayo Saka'";
+                
+                 //String SQLexcluirJogador = "DELETE FROM jogador WHERE nome = 'Gavi'";
+                
+                String driver = "jdbc:postgresql://127.0.0.1:5432/FUTSYSTEM";
+                
+                Statement st = null;
+                
+               
+                try (Connection conn = DriverManager.getConnection(driver, "postgres", "Estacio@123")) {
+                    if (conn != null) {
+                        System.out.println("Connected to the database!");
+                    } else {
+                        System.out.println("Failed to make connection!");
+                    }
+
+            // Criação da tabela jogador
+           /* System.out.println("Criando Tabela, aguarde...");
+            st = conn.createStatement();
+            st.executeUpdate(SQLcriarTabela);
+            System.out.println("Tabela criada com sucesso!");
+            st.close();*/
+
+            // Inserção de dados
+            /*System.out.println("Inserindo dados na Tabela...");
+            st = conn.createStatement();
+            st.executeUpdate(SQLInserirJogador);
+            System.out.println("Dados inseridos!");
+            st.close();*/
+
+            // Consulta de dados
+           /* System.out.println("Consultando dados na Tabela...");
+            st = conn.createStatement();
+            String SQLconsultarDados = "SELECT nome, idade, país, time, valor FROM jogador";
+            ResultSet result = st.executeQuery(SQLconsultarDados);
+            while (result.next()) {
+                System.out.println("----------------------");
+                System.out.println("Nome do jogador: " + result.getString("nome"));
+                System.out.println("Idade do jogador: " + result.getString("idade"));
+                System.out.println("Time do jogador: " + result.getString("time"));
+                System.out.println("País do jogador: " + result.getString("país"));
+                System.out.println("Valor do jogador: " + result.getString("valor"));
+            }
+            result.close();
+            st.close();*/
+            //fim do bloco consulta
+            
+            //bloco atualiza dados
+             /*System.out.println("Atualizando dados na Tabela...");
+		st = conn.createStatement();
+		st.executeUpdate(SQLatualizarDados);
+		System.out.println("Dados atualizados!");
+		st.close();
+		conn.close();*/
+         
+            
+           /*System.out.println("Excluindo dados na Tabela...");
+            st = conn.createStatement();
+            st.executeUpdate(SQLexcluirJogador);
+            System.out.println("Dados excluídos!");
+            st.close();
+            conn.close();*/
+            
+            
+            /*System.out.println("Consultando jogadores de alto valor...");
+            st = conn.createStatement();
+            String SQLconsultarValorAlto = "SELECT nome, idade, país, time, valor FROM jogador " +
+                "WHERE (valor >= 60000000.00)";
+            ResultSet result = st.executeQuery(SQLconsultarValorAlto);
+            while (result.next()) {
+                System.out.println("----------------------");
+                System.out.println("Nome do jogador: " + result.getString("nome"));
+                System.out.println("Idade do jogador: " + result.getString("idade"));
+                System.out.println("Time do jogador: " + result.getString("time"));
+                System.out.println("País do jogador: " + result.getString("país"));
+                System.out.println("Valor do jogador: R$ " + result.getString("valor"));
+            }
+            result.close();
+            st.close();*/
+            
+            // Consulta de jogadores com valor medio
+            /*System.out.println("Consultando jogadores de valor médio...");
+            st = conn.createStatement();
+            String SQLconsultarValorMedio = "SELECT nome, idade, país, time, valor FROM jogador " +
+                "WHERE (valor >= 10000000.00 AND valor <= 60000000.00)";
+            ResultSet result = st.executeQuery(SQLconsultarValorMedio);
+            while (result.next()) {
+                System.out.println("----------------------");
+                System.out.println("Nome do jogador: " + result.getString("nome"));
+                System.out.println("Idade do jogador: " + result.getString("idade"));
+                System.out.println("Time do jogador: " + result.getString("time"));
+                System.out.println("País do jogador: " + result.getString("país"));
+                System.out.println("Valor do jogador: R$ " + result.getString("valor"));
+            }
+            result.close();
+            st.close();*/
+            
+            // Consulta de jogadores com valor baixo
+            /*System.out.println("Consultando jogadores de valor baixo...");
+            st = conn.createStatement();
+            String SQLconsultarValorBaixo = "SELECT nome, idade, país, time, valor FROM jogador " +
+                "WHERE (valor < 10000000.00)";
+            ResultSet result = st.executeQuery(SQLconsultarValorBaixo);
+            while (result.next()) {
+                System.out.println("----------------------");
+                System.out.println("Nome do jogador: " + result.getString("nome"));
+                System.out.println("Idade do jogador: " + result.getString("idade"));
+                System.out.println("Time do jogador: " + result.getString("time"));
+                System.out.println("País do jogador: " + result.getString("país"));
+                 System.out.println("Valor do jogador: R$ " + result.getString("valor"));
+            }
+            result.close();
+            st.close();*/
+  
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+    }
+}
