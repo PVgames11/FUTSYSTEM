@@ -188,6 +188,23 @@ public class FUTSYSTEM {
             }
             result.close();
             st.close();*/
+              // Consulta de jogadores sem time
+           /* System.out.println("Consultando jogadores em fim de carreira...");
+            st = conn.createStatement();
+            String SQLconsultarSemTime = "SELECT nome, idade, país, time, valor FROM jogador " +
+                "WHERE ( time = 'SEM TIME')";
+            ResultSet result = st.executeQuery(SQLconsultarSemTime);
+            while (result.next()) {
+                System.out.println("----------------------");
+                System.out.println("Nome do jogador: " + result.getString("nome"));
+                System.out.println("Idade do jogador: " + result.getString("idade"));
+                System.out.println("Time do jogador: " + result.getString("time"));
+                System.out.println("País do jogador: " + result.getString("país"));
+                 System.out.println("Valor do jogador: R$ " + result.getString("valor"));
+            }
+            result.close();
+            st.close();*/
+            
   
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
